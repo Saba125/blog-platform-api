@@ -32,14 +32,15 @@ app.use(
 )
 // Db Connect
 // Serve static files
-// app.use("/images", express.static(path.join(__dirname, "../../public/images")))
-// app.use("/videos", express.static(path.join(__dirname, "../../public/videos")))
+app.use("/images", express.static(path.join(__dirname, "../../public/images")))
 
 // Routes
 app.use("/api/v1", router)
 const PORT = process.env.PORT || 3000
 // Run app
-
+app.get("/", authMiddleware, (req: Request, res: Response) => {
+  res.send("Hello worldd")
+})
 app.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`)
 })

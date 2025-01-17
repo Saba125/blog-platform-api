@@ -21,11 +21,14 @@ model User {
   id        Int       @id @default(autoincrement())
   email     String    @unique
   password  String
-  role      Role
+  role      Role      @default(user)
+  imageUrl  String?
   createdAt DateTime  @default(now())
   Post      Post[]
   Comment   Comment[]
   Like      Like[]
+
+  @@map("users")
 }
 
 model Post {
@@ -38,6 +41,8 @@ model Post {
   updatedAt DateTime  @updatedAt
   Comment   Comment[]
   Like      Like[]
+
+  @@map("post")
 }
 
 model Comment {
@@ -49,6 +54,8 @@ model Comment {
   post      Post     @relation(fields: [postId], references: [id])
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+
+  @@map("comment")
 }
 
 model Like {
@@ -57,4 +64,6 @@ model Like {
   author   User @relation(fields: [authorId], references: [id])
   postId   Int
   post     Post @relation(fields: [postId], references: [id])
+
+  @@map("like")
 }
