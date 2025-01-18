@@ -5,6 +5,7 @@ import upload from "../config/multer"
 import authMiddleware from "../middlewares/auth"
 import roleMiddleware from "../middlewares/permission"
 import { Role } from "@prisma/client"
+import commentsController from "../controllers/comments/export"
 const Router = express.Router()
 // users routes
 Router.post(
@@ -35,4 +36,6 @@ Router.route("/post").post(
 Router.route("/post/:id")
   .put(authMiddleware, upload.single("imageUrl"), postController.edit_post)
   .delete(authMiddleware, postController.delete_post)
+// comments routes
+Router.route("/comment").post(authMiddleware, commentsController.add_comment)
 export default Router
