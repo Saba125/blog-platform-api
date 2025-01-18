@@ -28,14 +28,16 @@ Router.put(
   usersController.edit_user_role
 )
 // post routes
-Router.route("/post").post(
-  authMiddleware,
-  upload.single("imageUrl"),
-  postController.add_post
-)
+Router.route("/post")
+  .post(authMiddleware, upload.single("imageUrl"), postController.add_post)
+  .get(authMiddleware, postController.get_posts)
 Router.route("/post/:id")
   .put(authMiddleware, upload.single("imageUrl"), postController.edit_post)
   .delete(authMiddleware, postController.delete_post)
+  .get(authMiddleware, postController.get_single_post)
 // comments routes
-Router.route("/comment").post(authMiddleware, commentsController.add_comment)
+Router.route("/post/comment").post(
+  authMiddleware,
+  commentsController.add_comment
+)
 export default Router

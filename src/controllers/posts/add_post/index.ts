@@ -13,7 +13,7 @@ export default async function add_post(req: Request, res: Response) {
     })
     return
   }
-  const imageUrl = `/images/${req.file?.filename}`
+  const imageUrl = req.file ? `/images/${req.file?.filename}` : null
   const post = await db.post.create({
     data: {
       title: body.title,
