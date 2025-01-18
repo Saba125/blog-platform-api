@@ -40,4 +40,12 @@ Router.route("/post/comment").post(
   authMiddleware,
   commentsController.add_comment
 )
+Router.get(
+  "/post/comment/user",
+  authMiddleware,
+  commentsController.get_user_comments
+)
+Router.route("/post/comment/:id")
+  .put(authMiddleware, commentsController.edit_comment)
+  .delete(authMiddleware, commentsController.delete_comment)
 export default Router

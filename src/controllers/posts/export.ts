@@ -1,8 +1,8 @@
 import add_post from "./add_post/index"
 import delete_post from "./delete_post/index"
 import edit_post from "./edit_post/index"
-import get_posts from "./get_posts"
-import get_single_post from "./get_single_post"
+import get_posts from "./get_posts/index"
+import get_single_post from "./get_single_post/index"
 const postController = {
   add_post,
   edit_post,
